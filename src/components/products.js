@@ -9,7 +9,7 @@ const productData = {
     oldPrice: 151900,
     discount: "-12%",
     badge: "Limited",
-    rating: 4.7,
+    rating: 4.2,
     reviewCount: 152,
     description: "A polished Chanel classic quilted chain bag designed for effortless everyday styling, featuring quilted detailing, a chain strap. Its versatile proportions make it easy to carry from daytime plans to elevated occasions.",
     shortDescription: "Refined classic quilted chain bag designed for effortless everyday elegance.",

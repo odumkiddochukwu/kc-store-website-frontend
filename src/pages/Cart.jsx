@@ -54,22 +54,22 @@ function buildOrderMessage(
     })
     .join("\n");
 
-  const safeShipping = toSafeNumber(shipping);
-  const safeDiscount = toSafeNumber(discount);
-  const safeSubtotal = toSafeNumber(subtotal);
-  const safeTotal = toSafeNumber(total);
+  const cartShipping = toSafeNumber(shipping);
+  const cartDiscount = toSafeNumber(discount);
+  const cartSubtotal = toSafeNumber(subtotal);
+  const cartTotal = toSafeNumber(total);
 
   const shippingLine =
-    safeShipping === 0
+    cartShipping === 0
       ? "Free"
-      : formatPrice(safeShipping);
+      : formatPrice(cartShipping);
 
   const discountLine =
-    safeDiscount > 0
-      ? `-${formatPrice(safeDiscount)}`
+    cartDiscount > 0
+      ? `-${formatPrice(cartDiscount)}`
       : formatPrice(0);
 
-  return `${openingLine}\n\nOrder summary:\n${itemLines}\n\nSubtotal: ${formatPrice(safeSubtotal)}\nShipping: ${shippingLine}\nDiscount: ${discountLine}\nTOTAL PRICE: ${formatPrice(safeTotal)}\n\nPlease send me the payment instructions and confirm the delivery details.\n\nSent from the KC Store website.`;
+  return `${openingLine}\n\nOrder summary:\n${itemLines}\n\nSubtotal: ${formatPrice(cartSubtotal)}\nShipping: ${shippingLine}\nDiscount: ${discountLine}\nTOTAL PRICE: ${formatPrice(cartTotal)}\n\nPlease send me the payment instructions and confirm the delivery details.\n\nSent from the KC Store website.`;
 }
 
 /* =========================================================
@@ -597,53 +597,19 @@ export default function Cart() {
   ] = useState(false);
 
   /* =======================================================
-     SAFE CART TOTALS
+     CART TOTALS
+     Values are calculated by CartContext and used directly
+     so the cart page stays synchronized with every other page.
   ======================================================= */
 
   const safeCartItems = Array.isArray(cartItems)
     ? cartItems
     : [];
 
-  const calculatedSubtotal =
-    safeCartItems.reduce(
-      (sum, item) => {
-        const price = toSafeNumber(item.price);
-        const quantity =
-          toSafeNumber(item.quantity);
-
-        return sum + price * quantity;
-      },
-      0
-    );
-
-  const safeSubtotal = Number.isFinite(
-    Number(subtotal)
-  )
-    ? Number(subtotal)
-    : calculatedSubtotal;
-
-  const safeShipping = Number.isFinite(
-    Number(shipping)
-  )
-    ? Number(shipping)
-    : 0;
-
-  const safeDiscount = Number.isFinite(
-    Number(discount)
-  )
-    ? Number(discount)
-    : 0;
-
-  const calculatedTotal =
-    safeSubtotal +
-    safeShipping -
-    safeDiscount;
-
-  const safeTotal = Number.isFinite(
-    Number(total)
-  )
-    ? Number(total)
-    : calculatedTotal;
+  const cartSubtotal = toSafeNumber(subtotal);
+  const cartShipping = toSafeNumber(shipping);
+  const cartDiscount = toSafeNumber(discount);
+  const cartTotal = toSafeNumber(total);
 
   /* =======================================================
      TOAST
@@ -738,10 +704,10 @@ export default function Cart() {
 
     const orderMessage = buildOrderMessage(
       safeCartItems,
-      safeSubtotal,
-      safeShipping,
-      safeDiscount,
-      safeTotal
+      cartSubtotal,
+      cartShipping,
+      cartDiscount,
+      cartTotal
     );
 
     const whatsappUrl =
@@ -1572,7 +1538,7 @@ export default function Cart() {
 
                       <span className="font-medium">
                         {formatPrice(
-                          safeSubtotal
+                          cartSubtotal
                         )}
                       </span>
 
@@ -1585,16 +1551,16 @@ export default function Cart() {
                       </span>
 
                       <span className="font-medium">
-                        {safeShipping === 0
+                        {cartShipping === 0
                           ? "Free"
                           : formatPrice(
-                              safeShipping
+                              cartShipping
                             )}
                       </span>
 
                     </div>
 
-                    {safeDiscount > 0 && (
+                    {cartDiscount > 0 && (
                       <div className="flex items-center justify-between text-[12px]">
 
                         <span className="text-[#63666A]">
@@ -1604,7 +1570,7 @@ export default function Cart() {
                         <span className="font-medium">
                           -
                           {formatPrice(
-                            safeDiscount
+                            cartDiscount
                           )}
                         </span>
 
@@ -1633,7 +1599,7 @@ export default function Cart() {
 
                     <p className="text-[24px] font-semibold tracking-[-0.03em]">
                       {formatPrice(
-                        safeTotal
+                        cartTotal
                       )}
                     </p>
 

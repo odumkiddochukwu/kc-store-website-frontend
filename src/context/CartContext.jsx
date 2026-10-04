@@ -539,13 +539,20 @@ export function CartProvider({ children }) {
   }, [cartItems]);
 
   const subtotal = useMemo(() => {
-    return cartItems.reduce(
-      (total, item) =>
-        total +
-        item.price * item.quantity,
-      0
-    );
-  }, [cartItems]);
+  return cartItems.reduce((total, item) => {
+    const price = Number(item.price);
+    const quantity = Number(item.quantity);
+
+    if (
+      !Number.isFinite(price) ||
+      !Number.isFinite(quantity)
+    ) {
+      return total;
+    }
+
+    return total + price * quantity;
+  }, 0);
+}, [cartItems]);
 
   /*
     Temporary shipping logic.

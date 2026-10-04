@@ -102,7 +102,7 @@ const Icon = ({ name, size = 20, strokeWidth = 1.8 }) => {
     close: (
       <>
         <path d="m6 6 12 12" />
-        <path d="m18 6-6 12" />
+        <path d="m18 6-12 12" />
       </>
     ),
 
@@ -164,70 +164,232 @@ const Icon = ({ name, size = 20, strokeWidth = 1.8 }) => {
 
 const bestSellerProducts = [
   {
-    id: "classic-leather-handbag",
-    slug: "classic-leather-handbag",
-    name: "Classic Leather Handbag",
+    id: "gucci-compact-flap-backpack",
+    slug: "gucci-compact-flap-backpack",
+    name: "Gucci Compact Flap Backpack",
     category: "Women's Bags",
-    price: 149900,
-    oldPrice: 179900,
-    discount: "-17%",
+    price: 149400,
+    oldPrice: 213400,
+    discount: "-30%",
     badge: "Best Seller",
-    rating: 4.9,
-    reviews: 218,
+    rating: 4.5,
+    reviews: 183,
     image:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85",
-    colors: ["Black", "Brown", "Cream"],
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941008/IMG_1692.jpg",
+    colors: ["Black", "Beige"],
     popularRank: 1,
   },
   {
-    id: "air-motion-sneakers",
-    slug: "air-motion-sneakers",
-    name: "Air Motion Sneakers",
-    category: "Shoes",
-    price: 74900,
-    oldPrice: 94900,
-    discount: "-21%",
+    id: "chanel-compact-quilted-handbag",
+    slug: "chanel-compact-quilted-handbag",
+    name: "Chanel Compact Quilted Handbag",
+    category: "Women's Bags",
+    price: 143700,
+    oldPrice: 169100,
+    discount: "-15%",
     badge: "Best Seller",
-    rating: 4.8,
-    reviews: 184,
+    rating: 4.4,
+    reviews: 22,
     image:
-      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=85",
-    colors: ["White", "Black", "Grey"],
-    sizes: ["40", "41", "42", "43", "44"],
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941163/IMG_1529.jpg",
+    colors: ["Black", "Red", "Cream"],
     popularRank: 2,
   },
   {
-    id: "minimal-leather-watch",
-    slug: "minimal-leather-watch",
-    name: "Minimal Leather Watch",
+    id: "rolex-sport-steel-bracelet-watch",
+    slug: "rolex-sport-steel-bracelet-watch",
+    name: "Rolex Sport Steel Bracelet Watch",
     category: "Watches",
-    price: 129900,
-    oldPrice: 149900,
-    discount: "-13%",
+    price: 210200,
+    oldPrice: null,
+    discount: null,
     badge: "Best Seller",
     rating: 4.8,
-    reviews: 163,
+    reviews: 203,
     image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",
-    colors: ["Black", "Brown"],
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790946313/IMG_2062.jpg",
+    colors: ["Black", "Gold"],
     popularRank: 3,
   },
   {
-    id: "oversized-essential-tee",
-    slug: "oversized-essential-tee",
-    name: "Oversized Essential Tee",
-    category: "Clothing",
-    price: 44900,
-    oldPrice: 49900,
+    id: "gucci-classic-flap-handbag",
+    slug: "gucci-classic-flap-handbag",
+    name: "Gucci Classic Flap Handbag",
+    category: "Women's Bags",
+    price: 140900,
+    oldPrice: null,
+    discount: null,
+    badge: "Best Seller",
+    rating: 4.4,
+    reviews: 126,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941107/IMG_1550.jpg",
+    colors: ["Black", "Brown"],
+    popularRank: 4,
+  },
+  {
+    id: "hublot-stainless-case-quartz-watch",
+    slug: "hublot-stainless-case-quartz-watch",
+    name: "Hublot Stainless Case Quartz Watch",
+    category: "Watches",
+    price: 160900,
+    oldPrice: 182800,
+    discount: "-12%",
+    badge: "Best Seller",
+    rating: 4.5,
+    reviews: 84,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790946314/IMG_2051.jpg",
+    colors: ["Silver", "Gold", "Black"],
+    popularRank: 5,
+  },
+  {
+    id: "gucci-leather-stripe-shoe",
+    slug: "gucci-leather-stripe-shoe",
+    name: "Gucci Leather Stripe Shoe",
+    category: "Shoes",
+    price: 75400,
+    oldPrice: 100500,
+    discount: "-25%",
+    badge: "Best Seller",
+    rating: 4.2,
+    reviews: 173,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790943121/IMG_2035.jpg",
+    colors: ["White", "Black", "Grey", "Red"],
+    sizes: ["38", "39", "40", "41", "42"],
+    popularRank: 6,
+  },
+  {
+    id: "patek-philippe-classic-steel-link-watch",
+    slug: "patek-philippe-classic-steel-link-watch",
+    name: "Patek Philippe Classic Steel Link Watch",
+    category: "Watches",
+    price: 237700,
+    oldPrice: null,
+    discount: null,
+    badge: "Best Seller",
+    rating: 4.8,
+    reviews: 65,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790946315/IMG_2055.jpg",
+    colors: ["Silver", "Black"],
+    popularRank: 7,
+  },
+  {
+    id: "celine-small-flap-chain-bag",
+    slug: "celine-small-flap-chain-bag",
+    name: "Celine Small Flap Chain Bag",
+    category: "Women's Bags",
+    price: 53500,
+    oldPrice: 71300,
+    discount: "-25%",
+    badge: "Best Seller",
+    rating: 4.6,
+    reviews: 56,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790940972/IMG_1780.jpg",
+    colors: ["Brown", "Black"],
+    popularRank: 8,
+  },
+  {
+    id: "gucci-compact-chain-crossbody-bag",
+    slug: "gucci-compact-chain-crossbody-bag",
+    name: "Gucci Compact Chain Crossbody Bag",
+    category: "Women's Bags",
+    price: 92000,
+    oldPrice: 131400,
+    discount: "-30%",
+    badge: "Best Seller",
+    rating: 4.5,
+    reviews: 274,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941072/IMG_1610.jpg",
+    colors: ["Black", "Cream"],
+    popularRank: 9,
+  },
+  {
+    id: "louis-vuitton-embroidered-bee-style-heels",
+    slug: "louis-vuitton-embroidered-bee-style-heels",
+    name: "Louis Vuitton Embroidered-Bee Style Heels",
+    category: "Shoes",
+    price: 73300,
+    oldPrice: 89400,
+    discount: "-18%",
+    badge: "Best Seller",
+    rating: 4.8,
+    reviews: 112,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790943229/IMG_1821.jpg",
+    colors: ["Black", "Grey", "White"],
+    sizes: ["38", "39", "40", "41", "42", "43", "44", "45"],
+    popularRank: 10,
+  },
+  {
+    id: "louis-vuitton-chunky-logo-sneakers",
+    slug: "louis-vuitton-chunky-logo-sneakers",
+    name: "Louis Vuitton Chunky Logo Sneakers",
+    category: "Shoes",
+    price: 148800,
+    oldPrice: 165300,
     discount: "-10%",
     badge: "Best Seller",
-    rating: 4.9,
-    reviews: 241,
+    rating: 4.2,
+    reviews: 40,
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
-    colors: ["White", "Black", "Grey", "Beige"],
-    sizes: ["S", "M", "L", "XL"],
-    popularRank: 4,
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790943214/IMG_1857.jpg",
+    colors: ["Black", "White", "Grey", "Green"],
+    sizes: ["38", "39", "40", "41", "42"],
+    popularRank: 11,
+  },
+  {
+    id: "gucci-classic-heels-2",
+    slug: "gucci-classic-heels-2",
+    name: "Gucci Classic Heels",
+    category: "Shoes",
+    price: 120200,
+    oldPrice: 130700,
+    discount: "-8%",
+    badge: "Best Seller",
+    rating: 4.7,
+    reviews: 149,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790943152/IMG_1975.jpg",
+    colors: ["Black", "Brown"],
+    sizes: ["38", "39", "40", "41", "42", "43"],
+    popularRank: 12,
+  },
+  {
+    id: "rolex-brushed-steel-dress-watch",
+    slug: "rolex-brushed-steel-dress-watch",
+    name: "Rolex Brushed Steel Dress Watch",
+    category: "Watches",
+    price: 198900,
+    oldPrice: 284100,
+    discount: "-30%",
+    badge: "Best Seller",
+    rating: 4.6,
+    reviews: 143,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790889669/IMG_1383.jpg",
+    colors: ["Silver", "Gold", "Black"],
+    popularRank: 13,
+  },
+  {
+    id: "gucci--mini-quilted-shoulder-bag",
+    slug: "gucci--mini-quilted-shoulder-bag",
+    name: "Gucci Mini Quilted Shoulder Bag",
+    category: "Women's Bags",
+    price: 125900,
+    oldPrice: 136800,
+    discount: "-8%",
+    badge: "Best Seller",
+    rating: 4.2,
+    reviews: 222,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941055/IMG_1624.jpg",
+    colors: ["Black", "Beige", "Pink", "Red"],
+    popularRank: 14,
   },
 ];
 
@@ -487,7 +649,7 @@ export default function BestSellers() {
 
               <Link
                 to="/best-sellers"
-                className="text-[13px] font-medium text-black"
+                className="relative text-[13px] font-medium text-black after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:bg-black after:content-['']"
               >
                 Best Sellers
               </Link>
@@ -733,7 +895,7 @@ export default function BestSellers() {
                   setMobileMenuOpen(false);
                   setMobileCategoriesOpen(false);
                 }}
-                className="shrink-0 border-b border-black/5 py-5 text-[17px] font-medium text-black"
+                className="relative shrink-0 border-b border-black/5 py-5 text-[17px] font-medium text-black after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:bg-black after:content-['']"
               >
                 Best Sellers
               </Link>
@@ -1371,11 +1533,11 @@ export default function BestSellers() {
             <div>
 
               <p className="text-[12px] font-semibold text-black">
-                Fast Shipping
+                Quick Delivery
               </p>
 
               <p className="mt-1 text-[11px] leading-5 text-[#808080]">
-                Free delivery over ₦150,000
+                Reliable delivery services
               </p>
 
             </div>

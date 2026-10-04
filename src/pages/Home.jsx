@@ -121,7 +121,7 @@ const categories = [
     slug: "womens-bags",
     subtitle: "Shop Now",
     image:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/st6vzres/image/upload/v1790868725/WhatsApp_Image_2026-10-01_at_15.43.22.jpg"
   },
   {
     id: 2,
@@ -129,7 +129,7 @@ const categories = [
     slug: "watches",
     subtitle: "Shop Now",
     image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/st6vzres/image/upload/v1790889670/IMG_1382.jpg"
   },
   {
     id: 3,
@@ -137,7 +137,7 @@ const categories = [
     slug: "clothing",
     subtitle: "Shop Now",
     image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85",
+      "images/shirt1.jpg",
   },
   {
     id: 4,
@@ -145,7 +145,7 @@ const categories = [
     slug: "shoes",
     subtitle: "Shop Now",
     image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=85",
+    "https://res.cloudinary.com/st6vzres/image/upload/v1790889432/IMG_1306.jpg"
   },
   {
     id: 5,
@@ -167,111 +167,122 @@ const categories = [
 const newArrivals = [
   {
     id: 1,
-    name: "Classic Oversized Hoodie",
-    category: "Clothing",
-    price: 8000,
-    oldPrice: null,
-    discount: null,
-    badge: "New",
-    rating: 4.8,
+    slug: "gucci-classic-men-shoes",
+    name: "Gucci Classic Men Shoes",
+    category: "Shoes",
+    categorySlug: "shoes",
+    price: 168000,
+    oldPrice: 210000,
+    discount: "-20%",
+    badge: null,
+    rating: 4.6,
     reviews: 120,
     image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1000&q=85",
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790943163/IMG_1966.jpg",
   },
-  {
+    {
     id: 2,
-    name: "Air Motion Sneakers",
-    category: "Shoes",
-    price: 14200,
-    oldPrice: 94900,
-    discount: "-21%",
+    slug: "chanel-quilted-flap-shoulder-bag",
+    name: "Chanel Quilted Flap Shoulder Bag",
+    category: "Bags",
+    categorySlug: "Women's Bags",
+    price: 200000,
+    oldPrice: 250000,
+    discount: "-20%",
     badge: null,
-    rating: 4.7,
-    reviews: 98,
-    image:
-      "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1000&q=85",
-  },
-  {
-    id: 3,
-    name: "Premium Wireless Headphones",
-    category: "Accessories",
-    price: 12500,
-    oldPrice: null,
-    discount: null,
-    badge: "New",
-    rating: 4.9,
-    reviews: 156,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1000&q=85",
-  },
-  {
-    id: 4,
-    name: "Minimal Series Watch",
-    category: "Watches",
-    price: 129900,
-    oldPrice: 149900,
-    discount: "-13%",
-    badge: null,
-    rating: 4.8,
-    reviews: 87,
-    image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=1000&q=85",
-  },
-  {
-    id: 5,
-    name: "Luxury Sunglasses",
-    category: "Accessories",
-    price: 24900,
-    oldPrice: null,
-    discount: null,
-    badge: "New",
     rating: 4.6,
-    reviews: 76,
-    image: "images/sunglasses1.jpg",
-  },
-  {
-    id: 6,
-    name: "Rolex Wristwatch",
-    category: "Accessories",
-    price: 320000,
-    oldPrice: 370000,
-    discount: "-10%",
+    reviews: 120,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941323/IMG_1397.jpg",
+  },  {
+    id: 3,
+    slug: "rolex-sport-steel-bracelet-watch",
+    name: "Rolex Sport Steel Bracelet Watch",
+    category: "Watches",
+    categorySlug: "watches",
+    price: 220000,
+    oldPrice: 275000,
+    discount: "-20%",
     badge: null,
-    rating: 4.7,
-    reviews: 113,
-    image: "images/product1.jpg",
+    rating: 4.6,
+    reviews: 120,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790946313/IMG_2062.jpg",
+  },  {
+    id: 4,
+    slug: "gucci-retro-runner-shoe",
+    name: "Gucci Retro Runner Shoe",
+    category: "Shoes",
+    categorySlug: "shoes",
+    price: 110000,
+    oldPrice: 150200,
+    discount: null,
+    badge: null,
+    rating: 4.6,
+    reviews: 120,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790889906/IMG_1354.jpg",
+  },  {
+    id: 5,
+    slug: "louis-vuitton-speedy-trunk-pillow-shoulder-bag",
+    name: "Louis Vuitton Speedy Trunk Pillow Shoulder Bag",
+    category: "Bags",
+    categorySlug: "women's bags",
+    price: 117000,
+    oldPrice: 123000,
+    discount: null,
+    badge: null,
+    rating: 4.6,
+    reviews: 42,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790868716/WhatsApp_Image_2026-10-01_at_15.43.16.jpg",
+  },  {
+    id: 6,
+    slug: "rolex-silver-bezel-dress-watch",
+    name: "Rolex Silver Bezel Dress Watch",
+    category: "Watches",
+    categorySlug: "watches",
+    price: 182000,
+    oldPrice: 209000,
+    discount: null,
+    badge: null,
+    rating: 4.6,
+    reviews: 22,
+    image:
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790946313/IMG_2061.jpg",
   },
+ 
 ];
 
 const bestSellers = [
   {
     id: 7,
-    name: "Classic Oversized Hoodie",
-    category: "Clothing",
-    price: 8000,
-    rating: 4.9,
-    reviews: 220,
+    name: "Gucci Interlocking-G Style Low-Top Heels",
+    category: "Shoes",
+    price: 108200,
+    rating: 4.2,
+    reviews: 50,
     image:
-      "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=1200&q=85",
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790889911/IMG_1344.jpg",
   },
   {
     id: 8,
-    name: "Air Motion Sneakers",
-    category: "Shoes",
-    price: 20700,
-    rating: 4.8,
-    reviews: 184,
+    name: "Chanel Compact Quilted Handbag",
+    category: "Bags",
+    price: 143900,
+    rating: 4.5,
+    reviews: 70,
     image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=85",
+      "https://res.cloudinary.com/st6vzres/image/upload/v1790941163/IMG_1529.jpg",
   },
   {
     id: 9,
-    name: "Rolex Wristwatch",
-    category: "Accessories",
-    price: 349900,
-    rating: 4.9,
-    reviews: 175,
-    image: "images/product2.jpg",
+    name: "Patek Philippe Slim Steel Dial Watch",
+    category: "Watches",
+    price: 137100,
+    rating: 4.2,
+    reviews: 80,
+    image: "https://res.cloudinary.com/st6vzres/image/upload/v1790946313/IMG_2057.jpg",
   },
 ];
 

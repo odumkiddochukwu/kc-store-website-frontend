@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router";
 import Footer from "../components/Footer";
 import { useCart } from "../context/CartContext";
+import productData from "../components/products";
 
 /* =========================================================
    ICONS
@@ -103,167 +104,7 @@ function formatPrice(price) {
    GET /api/products?search=query
 ========================================================= */
 
-const products = [
-  {
-    id: 1,
-    slug: "classic-leather-handbag",
-    name: "Classic Leather Handbag",
-    category: "Bags",
-    price: 89900,
-    image:
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 2,
-    slug: "premium-shoulder-bag",
-    name: "Premium Shoulder Bag",
-    category: "Bags",
-    price: 109900,
-    image:
-      "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 3,
-    slug: "structured-mini-bag",
-    name: "Structured Mini Bag",
-    category: "Bags",
-    price: 67900,
-    image:
-      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 4,
-    slug: "soft-leather-tote",
-    name: "Soft Leather Tote",
-    category: "Bags",
-    price: 119900,
-    image:
-      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 5,
-    slug: "minimal-leather-watch",
-    name: "Minimal Leather Watch",
-    category: "Watches",
-    price: 129900,
-    image:
-      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 6,
-    slug: "modern-stainless-watch",
-    name: "Modern Stainless Watch",
-    category: "Watches",
-    price: 179900,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 7,
-    slug: "classic-metal-watch",
-    name: "Classic Metal Watch",
-    category: "Watches",
-    price: 149900,
-    image:
-      "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 8,
-    slug: "signature-dial-watch",
-    name: "Signature Dial Watch",
-    category: "Watches",
-    price: 219900,
-    image:
-      "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 9,
-    slug: "oversized-essential-tee",
-    name: "Oversized Essential Tee",
-    category: "Clothing",
-    price: 29900,
-    image:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 10,
-    slug: "relaxed-fit-cotton-shirt",
-    name: "Relaxed Fit Cotton Shirt",
-    category: "Clothing",
-    price: 44900,
-    image:
-      "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 11,
-    slug: "premium-knit-dress",
-    name: "Premium Knit Dress",
-    category: "Clothing",
-    price: 79900,
-    image:
-      "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 12,
-    slug: "everyday-cargo-pants",
-    name: "Everyday Cargo Pants",
-    category: "Clothing",
-    price: 54900,
-    image:
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 13,
-    slug: "air-motion-sneakers",
-    name: "Air Motion Sneakers",
-    category: "Shoes",
-    price: 74900,
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 14,
-    slug: "studio-runner-sneakers",
-    name: "Studio Runner Sneakers",
-    category: "Shoes",
-    price: 89900,
-    image:
-      "https://images.unsplash.com/photo-1460353581641-37baddab0fa2?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 15,
-    slug: "everyday-court-sneakers",
-    name: "Everyday Court Sneakers",
-    category: "Shoes",
-    price: 64900,
-    image:
-      "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=500&q=90",
-  },
-
-  {
-    id: 16,
-    slug: "premium-fashion-sneakers",
-    name: "Premium Fashion Sneakers",
-    category: "Shoes",
-    price: 119900,
-    image:
-      "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=500&q=90",
-  },
-];
+const products= Object.values(productData);
 
 /* =========================================================
    SEARCH PAGE
@@ -1270,7 +1111,7 @@ export default function Search() {
                             >
 
                               <img
-                                src={product.image}
+                                src={product.mainImage}
                                 alt={product.name}
                                 className="h-12 w-12 shrink-0 rounded-xl object-cover"
                               />

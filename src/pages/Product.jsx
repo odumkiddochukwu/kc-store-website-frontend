@@ -1425,8 +1425,8 @@ export default function Product() {
                 <div className="mt-7 grid gap-3 sm:grid-cols-[1fr_52px]">
                   <button
                     type="button"
-                    onClick={
-                      handleAddToCart
+                    onClick={() =>
+                      handleAddToCart(product)
                     }
                     className="flex min-h-[54px] items-center justify-center rounded-xl bg-black px-7 text-[13px] font-medium text-white transition hover:bg-[#222]"
                   >

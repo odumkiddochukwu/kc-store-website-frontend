@@ -270,7 +270,7 @@ const About = () => {
             <div>
               <div className="grid border-t border-white/15 sm:grid-cols-2">
                 <Link
-                  to="/categories/bags"
+                  to="/categories/womens-bags"
                   className="group border-b border-white/15 py-7 sm:border-r sm:pr-8"
                 >
                   <div className="flex items-center justify-between">
@@ -352,7 +352,7 @@ const About = () => {
       <section className="relative min-h-[560px] overflow-hidden">
         <img
           src="/images/hero-image1.png"
-          alt="NovaTrend editorial fashion collection"
+          alt="KC store"
           className="absolute inset-0 h-full w-full object-cover"
         />
 

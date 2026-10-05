@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router";
 import { useCart } from "../context/CartContext";
 import productData from "../components/products";
@@ -152,9 +152,7 @@ const Icon = ({
    GET /api/products/:slug
 ========================================================= */
 
-
-
-const allProducts= Object.values(productData);
+const allProducts = Object.values(productData);
 
 /* =========================================================
    HELPERS
@@ -198,6 +196,11 @@ function RecommendationCard({
   onSave,
   isSaved,
 }) {
+  const productSlug =
+    Object.keys(productData).find(
+      (key) => productData[key] === product
+    ) ?? product.slug;
+
   return (
     <article className="group">
       <div className="relative aspect-[4/4.9] overflow-hidden rounded-2xl bg-[#f5f5f3]">
@@ -215,7 +218,7 @@ function RecommendationCard({
         </button>
 
         <Link
-          to={`/product/${product.slug}`}
+          to={`/product/${productSlug}`}
           className="block h-full"
         >
           <img
@@ -241,7 +244,7 @@ function RecommendationCard({
         </p>
 
         <Link
-          to={`/product/${product.slug}`}
+          to={`/product/${productSlug}`}
           className="mt-1 block text-[14px] font-medium hover:opacity-60"
         >
           {product.name}
@@ -268,6 +271,18 @@ function RecommendationCard({
 
 export default function Product() {
   const { slug } = useParams();
+
+  /* =======================================================
+     SCROLL TO TOP WHEN PRODUCT SLUG CHANGES
+  ======================================================= */
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, [slug]);
 
   /* =======================================================
      ACTIONS
@@ -830,246 +845,237 @@ export default function Product() {
           MOBILE MENU
       ====================================================== */}
 
-       {mobileMenuOpen && (
-              <div className="fixed inset-0 z-[70] lg:hidden">
-      
-                <div
-                  className="absolute inset-0 bg-black/40"
-                  onClick={() =>
-                    setMobileMenuOpen(false)
-                  }
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[70] lg:hidden">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() =>
+              setMobileMenuOpen(false)
+            }
+          />
+
+          <div className="absolute right-0 top-0 h-full w-[88%] max-w-[380px] overflow-y-auto bg-white p-6 shadow-2xl">
+            <div className="flex items-center justify-between">
+              <Link
+                to="/"
+                className="text-[22px] font-semibold tracking-[-0.05em]"
+              >
+                KC{" "}
+                <span className="text-[#63666A]">
+                  Store
+                </span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f5f5f3]"
+              >
+                <Icon
+                  name="close"
+                  size={20}
                 />
-      
-                <div className="absolute right-0 top-0 h-full w-[88%] max-w-[380px] overflow-y-auto bg-white p-6 shadow-2xl">
-      
-                  <div className="flex items-center justify-between">
+              </button>
+            </div>
+
+            <nav className="mt-12 flex flex-col">
+              <Link
+                to="/"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                Home
+              </Link>
+
+              <Link
+                to="/shop"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                Shop
+              </Link>
+
+              <Link
+                to="/new-arrivals"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                New Arrivals
+              </Link>
+
+              <Link
+                to="/best-sellers"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                Best Sellers
+              </Link>
+
+              {/* MOBILE CATEGORIES */}
+
+              <div className="border-b border-black/[0.07]">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobileCategoriesOpen(
+                      (current) =>
+                        !current
+                    )
+                  }
+                  aria-haspopup="menu"
+                  aria-expanded={
+                    mobileCategoriesOpen
+                  }
+                  className="flex w-full items-center justify-between py-5 text-left text-[17px] font-medium"
+                >
+                  <span>
+                    Categories
+                  </span>
+
+                  <Icon
+                    name="arrowDown"
+                    size={16}
+                  />
+                </button>
+
+                {mobileCategoriesOpen && (
+                  <div className="pb-3 pl-3">
                     <Link
-                                to="/"
-                                className="text-[22px] font-semibold tracking-[-0.05em]"
-                              >
-                                KC{" "}
-                                <span className="text-[#63666A]">
-                                  Store
-                                </span>
-                              </Link>
-      
-                    <button
-                      type="button"
+                      to="/categories/womens-bags"
                       onClick={() =>
                         setMobileMenuOpen(false)
                       }
-                      className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f5f5f3]"
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
                     >
+                      Women's Bags
+
                       <Icon
-                        name="close"
-                        size={20}
+                        name="arrowRight"
+                        size={14}
                       />
-                    </button>
-      
+                    </Link>
+
+                    <Link
+                      to="/categories/watches"
+                      onClick={() =>
+                        setMobileMenuOpen(false)
+                      }
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
+                    >
+                      Watches
+
+                      <Icon
+                        name="arrowRight"
+                        size={14}
+                      />
+                    </Link>
+
+                    <Link
+                      to="/categories/clothing"
+                      onClick={() =>
+                        setMobileMenuOpen(false)
+                      }
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
+                    >
+                      Clothing
+
+                      <Icon
+                        name="arrowRight"
+                        size={14}
+                      />
+                    </Link>
+
+                    <Link
+                      to="/categories/shoes"
+                      onClick={() =>
+                        setMobileMenuOpen(false)
+                      }
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
+                    >
+                      Shoes
+
+                      <Icon
+                        name="arrowRight"
+                        size={14}
+                      />
+                    </Link>
+
+                    <Link
+                      to="/categories/jewelry"
+                      onClick={() =>
+                        setMobileMenuOpen(false)
+                      }
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
+                    >
+                      Jewelry
+
+                      <Icon
+                        name="arrowRight"
+                        size={14}
+                      />
+                    </Link>
+
+                    <Link
+                      to="/categories/accessories"
+                      onClick={() =>
+                        setMobileMenuOpen(false)
+                      }
+                      className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
+                    >
+                      Accessories
+
+                      <Icon
+                        name="arrowRight"
+                        size={14}
+                      />
+                    </Link>
                   </div>
-      
-                  <nav className="mt-12 flex flex-col">
-      
-                    <Link
-                      to="/"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      Home
-                    </Link>
-      
-                    <Link
-                      to="/shop"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      Shop
-                    </Link>
-      
-                    <Link
-                      to="/new-arrivals"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      New Arrivals
-                    </Link>
-      
-                    <Link
-                      to="/best-sellers"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      Best Sellers
-                    </Link>
-      
-                    {/* MOBILE CATEGORIES */}
-      
-                    <div className="border-b border-black/[0.07]">
-      
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setMobileCategoriesOpen(
-                            (current) =>
-                              !current
-                          )
-                        }
-                        aria-haspopup="menu"
-                        aria-expanded={
-                          mobileCategoriesOpen
-                        }
-                        className="flex w-full items-center justify-between py-5 text-left text-[17px] font-medium"
-                      >
-                        <span>
-                          Categories
-                        </span>
-      
-                        <Icon
-                          name="arrowDown"
-                          size={16}
-                        />
-                      </button>
-      
-                      {mobileCategoriesOpen && (
-                        <div className="pb-3 pl-3">
-      
-                          <Link
-                            to="/categories/womens-bags"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Women's Bags
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                          <Link
-                            to="/categories/watches"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Watches
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                          <Link
-                            to="/categories/clothing"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Clothing
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                          <Link
-                            to="/categories/shoes"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Shoes
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                          <Link
-                            to="/categories/jewelry"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Jewelry
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                          <Link
-                            to="/categories/accessories"
-                            onClick={() =>
-                              setMobileMenuOpen(false)
-                            }
-                            className="flex items-center justify-between rounded-lg px-4 py-3 text-[14px] text-[#63666A] hover:bg-[#f7f7f6] hover:text-black"
-                          >
-                            Accessories
-      
-                            <Icon
-                              name="arrowRight"
-                              size={14}
-                            />
-                          </Link>
-      
-                        </div>
-                      )}
-      
-                    </div>
-      
-                    <Link
-                      to="/about"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      About
-                    </Link>
-      
-                    <Link
-                      to="/track-order"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      Track Order
-                    </Link>
-      
-                    <Link
-                      to="/contact"
-                      className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
-                      onClick={() =>
-                        setMobileMenuOpen(false)
-                      }
-                    >
-                      Contact
-                    </Link>
-      
-                  </nav>
-                </div>
+                )}
               </div>
-            )}
+
+              <Link
+                to="/about"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                About
+              </Link>
+
+              <Link
+                to="/track-order"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                Track Order
+              </Link>
+
+              <Link
+                to="/contact"
+                className="border-b border-black/[0.07] py-5 text-[17px] font-medium"
+                onClick={() =>
+                  setMobileMenuOpen(false)
+                }
+              >
+                Contact
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
 
       <main>
         {/* ===================================================
